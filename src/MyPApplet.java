@@ -2,7 +2,7 @@ import processing.core.*;
 
 public class MyPApplet extends PApplet
 {
-	private String URL = "https://upload.wikimedia.org/wikipedia/commons/5/58/Sunset_2007-1.jpg";
+	private String URL = "palmTrees.jpg";
 	
 	private PImage backgroundImg;
 	
@@ -14,6 +14,7 @@ public class MyPApplet extends PApplet
 	
 	public void draw()
 	{
+		backgroundImg.resize(0, height);
 		image(backgroundImg, 0, 0);
 	}
 }
