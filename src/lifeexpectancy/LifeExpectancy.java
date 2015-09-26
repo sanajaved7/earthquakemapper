@@ -1,4 +1,4 @@
-package guimodule;
+package lifeexpectancy;
 
 import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
