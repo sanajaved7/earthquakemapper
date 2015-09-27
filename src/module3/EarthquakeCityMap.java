@@ -75,6 +75,12 @@ public class EarthquakeCityMap extends PApplet {
 	    //PointFeatures have a getLocation method
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    
+	    // Here is an example of how to use Processing's color method to generate 
+	    // an int that represents the color yellow.  
+	    int yellow = color(255, 255, 0);
+	    int blue = color(12, 16, 245);
+	    int red = color(245, 12, 55);
+	    
 	    // These print statements show you (1) all of the relevant properties 
 	    // in the features, and (2) how to get one property and use it
 	    if (earthquakes.size() > 0) {
@@ -82,38 +88,40 @@ public class EarthquakeCityMap extends PApplet {
 	    	System.out.println(f.getProperties());
 	    	Object magObj = f.getProperty("magnitude");
 	    	float mag = Float.parseFloat(magObj.toString());
-	    	// PointFeatures also have a getLocation method
-//	    	Location loc = f.getLocation();
-//	    	SimplePointMarker m = new SimplePointMarker(loc);
-//	    	map.addMarkers(m);
+
 	    }
 	    
+	    //Iterates through list of earthquakes, 
+	    //creates marker for each earthquake, 
+	    //sets marker color based on magnitude 
+	    //and appends the marker to the marker list.
 	    for (int i = 0; i < earthquakes.size(); i++ ){
 	    	PointFeature f = earthquakes.get(i);
 	    	Location loc = f.getLocation();
+	    	
+	    	Object magObj = f.getProperty("magnitude");
+	    	float mag = Float.parseFloat(magObj.toString());
 	    	SimplePointMarker m = new SimplePointMarker(loc);
+	    	
+	    	if (mag >= THRESHOLD_MODERATE){
+	    		m.setColor(red);
+	    	}
+	    	else if (mag < THRESHOLD_MODERATE && mag >= THRESHOLD_LIGHT){
+	    		m.setColor(blue);
+	    	}
+	    	else {
+	    		m.setColor(yellow);
+	    	}
+	    	
+	    	m.setRadius(10);
 	    	markers.add(m);
 	    }
-	    
+	    //Passes markers list to map to display all markers for earthquakes
 	    map.addMarkers(markers);
 	    
-	    
-	    // Here is an example of how to use Processing's color method to generate 
-	    // an int that represents the color yellow.  
-	    int yellow = color(255, 255, 0);
-	    
-	    //TODO: Add code here as appropriate
 	}
 		
-	// A suggested helper method that takes in an earthquake feature and 
-	// returns a SimplePointMarker for that earthquake
-	// TODO: Implement this method and call it from setUp, if it helps
-	private SimplePointMarker createMarker(PointFeature feature)
-	{
-		// finish implementing and use this method, if it helps.
-		return new SimplePointMarker(feature.getLocation());
-	}
-	
+
 	public void draw() {
 	    background(10);
 	    map.draw();
