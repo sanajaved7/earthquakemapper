@@ -121,19 +121,41 @@ public class EarthquakeCityMap extends PApplet {
 	    
 	}
 		
-
 	public void draw() {
 	    background(10);
 	    map.draw();
 	    addKey();
 	}
 
-
-	// helper method to draw key in GUI
-	// TODO: Implement this method to draw the key
 	private void addKey() 
 	{	
-		// Remember you can use Processing's graphics methods here
-	
+		int yellow = color(255, 255, 0);
+	    int blue = color(12, 16, 245);
+	    int red = color(245, 12, 55);
+		//creates box for key
+	    fill(255, 255, 225);
+		rect(20, 50, 150, 300);
+		String s = "Earthquake Key";
+		fill(50);
+		text(s, 35, 55, 120, 300);
+		//creates red dot for high threshold earthquakes
+		fill(red);
+		ellipse(35, 110, 20, 20);
+		String t = "5.0+ Magnitude";
+		fill(50);
+		text(t, 55, 105, 120, 300);
+		//creates blue dot for middle threshold magnitude earthquakes
+		fill(blue);
+		ellipse(35, 175, 20, 20);
+		String u = "4.0+ Magnitude";
+		fill(50);
+		text(u, 55, 170, 120, 300);
+		//creates yellow dot for low threshold magnitude earthquakes
+		fill(yellow);
+		ellipse(35, 240, 20, 20);
+		String v = "Below 4.0 Magnitude";
+		fill(50);
+		text(v, 55, 235, 120, 300);
+		
 	}
 }
