@@ -20,8 +20,8 @@ import processing.core.PApplet;
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
  * Author: UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- * Date: July 17, 2015
+ * @author Sana Javed
+ * Date: October 07, 2015
  * */
 public class EarthquakeCityMap extends PApplet {
 	
@@ -65,7 +65,7 @@ public class EarthquakeCityMap extends PApplet {
 		size(900, 700, OPENGL);
 		if (offline) {
 		    map = new UnfoldingMap(this, 200, 50, 650, 600, new MBTilesMapProvider(mbTilesString));
-		    earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
+		    //earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
 		}
 		else {
 			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
@@ -77,7 +77,7 @@ public class EarthquakeCityMap extends PApplet {
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
-		//earthquakesURL = "test2.atom";
+		earthquakesURL = "test2.atom";
 		
 		// WHEN TAKING THIS QUIZ: Uncomment the next line
 		// earthquakesURL = "quiz1.atom";
@@ -183,6 +183,7 @@ public class EarthquakeCityMap extends PApplet {
 	private void printQuakes() 
 	{
 		int oceanQuakeCount = 0;
+		int totalLandQuakeCount = 0;
 		for (Marker country : countryMarkers){
 			System.out.print(country.getStringProperty("name")+": ");
 			int landQuakeCount = 0;
@@ -190,17 +191,15 @@ public class EarthquakeCityMap extends PApplet {
 					if (((EarthquakeMarker) quake).isOnLand()) {
 						if (country.getStringProperty("name") == ((LandQuakeMarker) quake).getCountry()){
 							landQuakeCount += 1;
+							totalLandQuakeCount += 1;
 						}
 						
-					}
-					else {
-						oceanQuakeCount += 1;
 					}
 				}
 			System.out.println(landQuakeCount);
 		}
 		System.out.print("Number of ocean quakes: ");
-		System.out.println(oceanQuakeCount);
+		System.out.println(quakeMarkers.size() - totalLandQuakeCount);
 	}
 	
 	
