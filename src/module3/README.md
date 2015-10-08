@@ -3,3 +3,6 @@ Visualizaton of earthquake data from a live RSS feed (http://earthquake.usgs.gov
 Markers are also color coded to signify degree of magnitude of the earthquake.
 
 Key is also drawn on the map using the Processing library.
+
+ ![Map Visualization of Earthquakes in the Last Week](https://github.com/sanajaved7/earthquakemap/blob/master/src/module3/EarthquakeMagnitudeMap.png)
+ 
