@@ -149,6 +149,7 @@ public class EarthquakeCityMap extends PApplet {
 		for (Marker marker: markers) {
 			if (lastSelected == null && marker.isInside(map, mouseX, mouseY)) { 
 				marker.setSelected(true);
+				lastSelected = (CommonMarker) marker;
 				System.out.println(marker.getLocation());
 				return;
 			}
@@ -165,6 +166,10 @@ public class EarthquakeCityMap extends PApplet {
 		// TODO: Implement this method
 		// Hint: You probably want a helper method or two to keep this code
 		// from getting too long/disorganized
+//		for (Marker marker: markers) {
+//			if (lastSelected != null){ 
+//				marker.setSelected(false);
+//			}
 	}
 	
 	
